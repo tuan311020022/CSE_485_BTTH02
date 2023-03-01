@@ -1,6 +1,6 @@
 <?php
-include("configs/DBConnection.php");
-include("models/BaiViet.php");
+include("../configs/DBConnection.php");
+include("../models/BaiViet.php");
 class BaiVietService{
     public function getAllBaiViet(){
         $dbConn = new DBConnection();

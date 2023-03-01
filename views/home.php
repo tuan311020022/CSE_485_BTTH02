@@ -67,24 +67,24 @@
     <main class="container-fluid mt-3">
         <h3 class="text-center text-uppercase mb-3 text-primary">TOP bài hát yêu thích</h3>
         <div class="row">
-            <!-- <?php
-                #macbook
-                // $conn =new PDO("mysql:host=localhost:3306;dbname=btth01_cse485","root","25122019");
-                // $data = $conn->query("SELECT * FROM baiviet")->fetchAll();
+            <?php include '../controllers/HomeController.php';
+                $home_controller = new HomeController();
+                $data = $home_controller->getAll();
+                // print_r($data[1]->getMa_bviet());
                 foreach ($data as $row) {
                     echo    "<div class='col-sm-3'>
                                 <div class='card mb-2' style='width: 100%;'>
-                                    <img src='".$row['hinhanh']."' class='card-img-top' alt='...'>
+                                    <img src='".$row->getHinhanh()."' class='card-img-top' alt='...'>
                                     <div class='card-body'>
                                         <h5 class='card-title text-center'>
-                                            <a href='detail.php?id=".$row['ma_bviet']."' class='text-decoration-none'>".$row['tieude']."</a>
+                                            <a href='detail.php?id=".$row->getMa_bviet()."' class='text-decoration-none'>".$row->getTieude()."</a>
                                         </h5>
                                     </div>
                                 </div>
                             </div>";                    
                 }
-                $conn = null
-            ?> -->
+
+            ?>
         </div>
     </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
