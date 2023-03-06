@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music for Life</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="my-logo">
                     <a class="navbar-brand" href="#">
-                        <img src="images/logo2.png" alt="" class="img-fluid">
+                        <img src="../assets/images/logo2.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,13 +45,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img src="images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                <img src="images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                <img src="images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
+                  <img src="../assets/images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                  <img src="../assets/images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                  <img src="../assets/images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -67,60 +67,23 @@
     <main class="container-fluid mt-3">
         <h3 class="text-center text-uppercase mb-3 text-primary">TOP bài hát yêu thích</h3>
         <div class="row">
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/cayvagio.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Cây, lá và gió</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/csmt.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Cuộc sống mến thương</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs//longme.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Lòng mẹ</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/phoipha.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Phôi pha</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/noitinhyeubatdau.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center my-title">
-                            <a href="detail.php" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+            <?php include '../controllers/HomeController.php';
+                $home_controller = new HomeController();
+                $data = $home_controller->getAll();
+                // print_r($data[1]->getMa_bviet());
+                foreach ($data as $row) {
+                    echo    "<div class='col-sm-3'>
+                                <div class='card mb-2' style='width: 100%;'>
+                                    <img src='".$row->getHinhanh()."' class='card-img-top' alt='...'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title text-center'>
+                                            <a href='detail.php?id=".$row->getMa_bviet()."' class='text-decoration-none'>".$row->getTieude()."</a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>";                    
+                }
+            ?>
         </div>
     </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
